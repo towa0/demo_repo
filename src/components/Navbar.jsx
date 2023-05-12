@@ -1,69 +1,168 @@
 import React, { useState } from "react";
-import { AiOutlineClose, AiOutlineMenu, AiOutlineUser } from "react-icons/ai";
-import { BiChevronDown } from "react-icons/bi";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { BiChevronDown, BiChevronRight } from "react-icons/bi";
+import useDropdownMenu from "./useDropDownMenu";
+import useDropdownMenu2 from "./useDropDownMenu2";
+import PersoonsBusje from "../assets/PersoonsBusjeHurenLogo.png";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const { isOpen, toggleMenu } = useDropdownMenu(false);
+  const { isOpen2, toggleMenu2 } = useDropdownMenu2(false);
 
   const handleNav = () => {
     setNav(!nav);
   };
 
   return (
-    <div className="flex justify-between items-center h-[100px] max-w-[1400px] m-auto px-4 text-[#6e46cf]">
-      <h1 className="text-4xl  font-bold text-[#6e46cf] cursor-pointer mr-10">
-        BusjesHuren
-      </h1>
-      <ul className="hidden md:flex justify-evenly w-full items-end ">
-        <li className="p-3 hover:text-[#000000] hover:underline cursor-pointer mr-10">
+    <div className="flex justify-between items-center h-[100px] w-full m-auto px-4 text-[#6e47cf] bg-white">
+      <div className="flex items-center justify-between">
+        <img
+          src={PersoonsBusje}
+          alt="PersoonsBusjeHurenLogo"
+          className="w-14 h-14 "
+        />
+        <h1 className="text-3xl font-bold text-[#6e47cf] cursor-pointer">
+          Persoons
+          <br />
+          BusjesHuren
+        </h1>
+      </div>
+
+      <ul className="hidden md:flex justify-evenly w-full items-end relative">
+        <li className="p-3 hover:hover:text-[#221839] hover:underline cursor-pointer mr-7 hidden xl:block">
           <div className="flex items-center">
-            <span>Producten</span>
-            <BiChevronDown size={20} />
+            <span onClick={toggleMenu}>Producten</span>
+            <BiChevronDown onClick={toggleMenu} size={20} />
           </div>
         </li>
-        <li className="p-3 hover:text-[#000000] hover:underline cursor-pointer mr-10">
+
+        {isOpen && (
+          <ul className="absolute z-10 p-10 bg-white rounded-md shadow-lg top-14 transform left-40 translate-x-[-170px] w-[700px] h-[400px]">
+            <li className="px-6 py-5 w-1/2 text-lg text-[#1f232e] hover:bg-purple-200 cursor-pointer rounded-md">
+              <div className="flex items-center">
+                <span>Persoonsbusje huren</span>
+                <BiChevronRight size={20} className="ml-10" />
+              </div>
+            </li>
+            <li className="px-6 py-5 my-2 w-1/2 text-lg text-[#1f232e] hover:bg-purple-200 cursor-pointer rounded-md">
+              <div className="flex items-center">
+                <span>Volkswagen busje</span>
+                <BiChevronRight size={20} className="ml-10" />
+              </div>
+            </li>
+            <li className="px-6 py-5 w-1/2 text-lg text-[#1f232e] hover:bg-purple-200 cursor-pointer rounded-md">
+              <div className="flex items-center">
+                <span>Bestel busje</span>
+                <BiChevronRight size={20} className="ml-10" />
+              </div>
+            </li>
+            <li className="px-6 py-5 w-1/2 text-lg my-2 text-[#1f232e] hover:bg-purple-200 cursor-pointer rounded-md">
+              <div className="flex items-center">
+                <span>Verhuis wagen</span>
+                <BiChevronRight size={20} className="ml-10" />
+              </div>
+            </li>
+          </ul>
+        )}
+
+        <li className="p-3 hover:text-[#221839] hover:underline cursor-pointer mr-10 hidden xl:block">
           <div className="flex items-center">
-            <span>Over ons</span>
-            <BiChevronDown size={20} />
+            <span onClick={toggleMenu2}>Over ons</span>
+            <BiChevronDown onClick={toggleMenu2} size={20} />
           </div>
         </li>
-        <li className="p-3 hover:text-[#000000] hover:underline cursor-pointer ml-auto mr-10">
-          Laatste nieuws
+
+        {isOpen2 && (
+          <ul className="absolute z-10 p-10 bg-white rounded-md shadow-lg top-14 transform left-40  w-[400px] h-[500px]">
+            <li className="px-5 py-4 w-50 text-[16px] text-[#1f232e] hover:bg-purple-200 cursor-pointer rounded-md">
+              <div className="flex items-center">
+                <span>Over PersoonsBusjeHuren</span>
+              </div>
+            </li>
+            <li className="px-6 py-5 my-2 w-50 text-[16px] text-[#1f232e] hover:bg-purple-200 cursor-pointer rounded-md">
+              <div className="flex items-center">
+                <span>Onze partners</span>
+              </div>
+            </li>
+            <li className="px-6 py-5 w-50 text-[16px] text-[#1f232e] hover:bg-purple-200 cursor-pointer rounded-md">
+              <div className="flex items-center">
+                <span>Laatste nieuws</span>
+              </div>
+            </li>
+            <li className="px-6 py-5 w-50 text-[16px] my-2 text-[#1f232e] hover:bg-purple-200 cursor-pointer rounded-md">
+              <div className="flex items-center">
+                <span>Lorem, ipsum dolor.</span>
+              </div>
+            </li>
+            <li className="px-6 py-5 w-50 text-[16px] my-2 text-[#1f232e] hover:bg-purple-200 cursor-pointer rounded-md">
+              <div className="flex items-center">
+                <span>Lorem, ipsum dolor.</span>
+              </div>
+            </li>
+            <li className="px-6 py-5 w-50 text-[16px] my-2 text-[#1f232e] hover:bg-purple-200 cursor-pointer rounded-md">
+              <div className="flex items-center">
+                <span>Lorem, ipsum dolor.</span>
+              </div>
+            </li>
+          </ul>
+        )}
+
+        <li className="p-3 hover:text-[#221839] hover:underline cursor-pointer ml-auto xl:ml-0 xl:mr-8">
+          <div className="flex items-center">
+            <span className="hidden xl:inline mr-1">Laatste </span>
+            Nieuws
+          </div>
         </li>
-        <li className="p-3 hover:text-[#000000] hover:underline cursor-pointer mr-10">
+
+        <li className="p-3 hover:text-[#221839] hover:underline cursor-pointer xl:ml-0 xl:mr-8">
           Klantenservice
         </li>
-        <li className="p-3 hover:text-[#000000] hover:underline cursor-pointer mr-10">
-          Mijn contracten
-        </li>
-        <li className="p-3 hover:text-[#000000] hover:underline cursor-pointer mr-10">
+        <li className="p-3 hover:text-[#221839] hover:underline cursor-pointer  xl:ml-0 xl:mr-8">
           <div className="flex items-center">
-            <AiOutlineUser size={20} />
-            <span>Inloggen</span>
-            <BiChevronDown size={20} />
+            <span className="hidden xl:inline mr-1">Contact</span>
           </div>
         </li>
       </ul>
-      <div onClick={handleNav} className="block md:hidden">
-        {!nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
-      </div>
-      <div
-        className={
-          nav
-            ? "fixed left-0 top-0 w-[60%] h-full border-r-gray-900 bg-[#000300] ease-in-out duration-500"
-            : "fixed left-[-100%]"
-        }
-      >
-        <h1 className="text-3xl w-full font-bold text-[#00df9a] m-4">
-          Datapulse.
-        </h1>
-        <ul className="uppercase p-4">
-          <li className="p-4 border-b border-gray-600">Home</li>
-          <li className="p-4 border-b border-gray-600">Company</li>
-          <li className="p-4 border-b border-gray-600">Recourses</li>
-          <li className="p-4 border-b border-gray-600">About</li>
-          <li className="p-4">Contact</li>
-        </ul>
+
+      <div className="relative">
+        <div onClick={handleNav} className="block xl:hidden">
+          {!nav ? (
+            <AiOutlineMenu size={20} />
+          ) : (
+            <AiOutlineClose size={20} className="z-20" />
+          )}
+        </div>
+        <div
+          className={
+            nav
+              ? "fixed top-20 mt-2 left-0 w-full h-full border-r-gray-900 bg-[#ffffff] ease-in-out duration-500"
+              : "fixed left-[-100%]"
+          }
+        >
+          <ul className=" p-4 bg-white ">
+            <li className="p-4 flex justify-between items-center text-[#221839]">
+              Persoonsbusje huren
+              <BiChevronRight size={20} />
+            </li>
+            <li className="p-4 flex justify-between items-center text-[#221839]">
+              Volkswagen busje
+              <BiChevronRight size={20} />
+            </li>
+            <li className="p-4 flex justify-between items-center text-[#221839]">
+              Bestel busje
+              <BiChevronRight size={20} />
+            </li>
+            <li className="p-4 flex justify-between items-center text-[#221839]">
+              Verhuis busje
+              <BiChevronRight size={20} />
+            </li>
+            <li className="p-4 flex justify-between items-center text-[#221839]">
+              Contact
+              
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

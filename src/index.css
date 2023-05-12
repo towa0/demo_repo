@@ -17,8 +17,26 @@ li {
   font-weight: bold;
 }
 
+.bg-image {
+  position: relative;
+  height: 100vh;
+  background-image: url("../src/assets/PersoonsBusjeAchtergrond.png");
+  background-size: cover;
+  background-position: center;
+  margin-top: 1px;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  margin-top: -50px;
+}
+
+
+
+
 ::-webkit-scrollbar-thumb {
-  background-color: #6e46cf;
+  background-color: #6e47cf;
   border-radius: 30px;
 }
 
